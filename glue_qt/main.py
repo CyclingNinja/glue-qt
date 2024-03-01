@@ -8,6 +8,14 @@ from glue.logger import logger
 from glue.main import load_plugins
 
 
+QT_PLUGINS = ['glue_qt.plugins.tools.pv_slicer',
+              'glue_qt.viewers.image',
+              'glue_qt.viewers.scatter',
+              'glue_qt.viewers.histogram',
+              'glue_qt.viewers.profile',
+              'glue_qt.viewers.table']
+
+
 def parse(argv):
     """ Parse argument list, check validity
 
@@ -153,7 +161,7 @@ def start_glue(gluefile=None, config=None, datafiles=None, maximized=True,
     # Start off by loading plugins. We need to do this before restoring
     # the session or loading the configuration since these may use existing
     # plugins.
-    load_plugins(splash=splash, require_qt_plugins=True)
+    load_plugins(splash=splash, plugins_to_load=QT_PLUGINS)
 
     from glue_qt.app import GlueApplication
 
